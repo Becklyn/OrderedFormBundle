@@ -188,4 +188,19 @@ class FormFieldSorterTest extends TestCase
         $sorter->getSortedFieldNames();
         $sorter->add("b", null);
     }
+
+
+    /**
+     * Multiple gets should be supported and return the same thing
+     *
+     * @throws \Becklyn\OrderedFormBundle\Exception\OrderedFormException
+     */
+    public function testMultipleGet ()
+    {
+        $sorter = new FormFieldSorter();
+        $sorter->add("a", null);
+        $a = $sorter->getSortedFieldNames();
+        $b = $sorter->getSortedFieldNames();
+        self::assertEquals($a, $b);
+    }
 }
