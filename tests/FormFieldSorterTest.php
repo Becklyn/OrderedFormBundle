@@ -174,4 +174,18 @@ class FormFieldSorterTest extends TestCase
 
         $sorter->getSortedFieldNames();
     }
+
+
+    /**
+     * @expectedException \Becklyn\OrderedFormBundle\Exception\OrderedFormException
+     * @expectedExceptionMessage Can't add item after the form field sorter is frozen.
+     * @throws \Becklyn\OrderedFormBundle\Exception\OrderedFormException
+     */
+    public function testAddAfterGet ()
+    {
+        $sorter = new FormFieldSorter();
+        $sorter->add("a", null);
+        $sorter->getSortedFieldNames();
+        $sorter->add("b", null);
+    }
 }
