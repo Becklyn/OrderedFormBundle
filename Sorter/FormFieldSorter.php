@@ -3,8 +3,8 @@
 namespace Becklyn\OrderedFormBundle\Sorter;
 
 use Becklyn\OrderedFormBundle\Exception\InvalidConfigException;
+use Becklyn\OrderedFormBundle\Exception\OrderedFormException;
 use Becklyn\OrderedFormBundle\Sorter\Position\RelativePosition;
-use Symfony\Component\Form\FormInterface;
 
 
 class FormFieldSorter
@@ -50,29 +50,22 @@ class FormFieldSorter
 
 
     /**
-     *
-     * @param FormInterface $form
-     * @throws InvalidConfigException
+     * @var bool
      */
-    public function __construct (FormInterface $form)
-    {
-        foreach ($form as $name => $child)
-        {
-            $this->add($child);
-        }
-
-        $this->buildList();
-    }
+    private $isFrozen = false;
 
 
     /**
-     * @param FormInterface $field
-     * @throws InvalidConfigException
+     * @param string $fieldName
+     * @param mixed  $position
+     * @throws OrderedFormException
      */
-    private function add (FormInterface $field) : void
+    public function add (string $fieldName, $position) : void
     {
-        $position = $field->getConfig()->getPosition();
-        $fieldName = $field->getName();
+        if ($this->isFrozen)
+        {
+            throw new OrderedFormException("Can't add item after the form field sorter is frozen.");
+        }
 
         switch (true)
         {
@@ -229,10 +222,16 @@ class FormFieldSorter
     /**
      * Returns the sorted list
      *
-     * @return iterable
+     * @return string[]
      */
-    public function getSorted () : iterable
+    public function getSortedFieldNames () : array
     {
+        if (!$this->isFrozen)
+        {
+            $this->buildList();
+            $this->isFrozen = true;
+        }
+
         return $this->list;
     }
 }

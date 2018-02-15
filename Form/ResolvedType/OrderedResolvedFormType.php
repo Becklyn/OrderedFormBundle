@@ -40,9 +40,9 @@ class OrderedResolvedFormType extends ResolvedFormType
 
         $children = $view->children;
         $view->children = [];
-        $sorter = new FormFieldSorter($form);
+        $sorter = $this->buildSorter($form);
 
-        foreach ($sorter->getSorted() as $fieldName)
+        foreach ($sorter->getSortedFieldNames() as $fieldName)
         {
             $view->children[$fieldName] = $children[$fieldName];
         }
@@ -57,5 +57,25 @@ class OrderedResolvedFormType extends ResolvedFormType
         return new OrderedFormBuilder($name, $dataClass, new EventDispatcher(), $factory, $options);
     }
 
+
+    /**
+     * Builds and returns the sorter
+     *
+     * @param FormInterface $form
+     * @return FormFieldSorter
+     * @throws \Becklyn\OrderedFormBundle\Exception\OrderedFormException
+     */
+    private function buildSorter (FormInterface $form)
+    {
+        $sorter = new FormFieldSorter();
+
+        /** @var FormInterface $child */
+        foreach ($form as $child)
+        {
+            $sorter->add($child->getName(), $child->getConfig()->getPosition());
+        }
+
+        return $sorter;
+    }
 
 }
