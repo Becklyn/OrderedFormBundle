@@ -2,6 +2,8 @@
 
 namespace Becklyn\OrderedFormBundle\Sorter\Position;
 
+use Becklyn\OrderedFormBundle\Exception\InvalidConfigException;
+
 
 class RelativePosition
 {
@@ -42,6 +44,7 @@ class RelativePosition
     /**
      * @param array $list
      * @return array
+     * @throws InvalidConfigException
      */
     public function moveInList (array &$list) : array
     {
@@ -50,8 +53,11 @@ class RelativePosition
 
         if (false === $referenceIndex)
         {
-            $list[] = $this->name;
-            return $list;
+            throw new InvalidConfigException(sprintf(
+                "Can't position field '%s' relative to '%s', as the field wasn't found.",
+                $this->name,
+                $this->referenceName
+            ));
         }
 
         if ($this->position === self::AFTER)
