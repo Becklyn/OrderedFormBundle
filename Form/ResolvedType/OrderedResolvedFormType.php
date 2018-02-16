@@ -51,7 +51,7 @@ class OrderedResolvedFormType extends ResolvedFormType
             }
         }
 
-        // add remaining missing fields
+        // add remaining missing fields (like _token, that doesn't end up in the form itself)
         foreach ($unorderedChildren as $fieldName => $child)
         {
             if (!isset($view->children[$fieldName]))
