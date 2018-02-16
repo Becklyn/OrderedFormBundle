@@ -38,13 +38,26 @@ class OrderedResolvedFormType extends ResolvedFormType
     {
         parent::finishView($view, $form, $options);
 
-        $children = $view->children;
+        $unorderedChildren = $view->children;
         $view->children = [];
         $sorter = $this->buildSorter($form);
 
+        // add sorted fields
         foreach ($sorter->getSortedFieldNames() as $fieldName)
         {
-            $view->children[$fieldName] = $children[$fieldName];
+            if (isset($unorderedChildren[$fieldName]))
+            {
+                $view->children[$fieldName] = $unorderedChildren[$fieldName];
+            }
+        }
+
+        // add remaining missing fields
+        foreach ($unorderedChildren as $fieldName => $child)
+        {
+            if (!isset($view->children[$fieldName]))
+            {
+                $view->children[$fieldName] = $unorderedChildren[$fieldName];
+            }
         }
     }
 
