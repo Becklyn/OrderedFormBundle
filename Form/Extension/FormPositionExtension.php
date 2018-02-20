@@ -11,14 +11,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class FormPositionExtension extends AbstractTypeExtension
 {
     /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->setPosition($options['position']);
-    }
-
-    /**
      * @inheritDoc
      */
     public function configureOptions (OptionsResolver $resolver)

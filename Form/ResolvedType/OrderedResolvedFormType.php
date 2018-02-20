@@ -20,11 +20,8 @@ use Symfony\Component\Form\SubmitButtonTypeInterface;
 class OrderedResolvedFormType extends ResolvedFormType
 {
     /**
-     * @var FormFieldSorter
+     * @inheritdoc
      */
-    private $sorter;
-
-
     public function __construct (
         FormTypeInterface $innerType,
         array $typeExtensions = [],
@@ -66,26 +63,6 @@ class OrderedResolvedFormType extends ResolvedFormType
     }
 
 
-    /**
-     * @inheritDoc
-     */
-    protected function newBuilder ($name, $dataClass, FormFactoryInterface $factory, array $options)
-    {
-        $innerType = $this->getInnerType();
-
-        switch (true)
-        {
-            case $innerType instanceof ButtonTypeInterface:
-                return new OrderedButtonBuilder($name, $options);
-
-            case $innerType instanceof SubmitButtonTypeInterface:
-                return new SubmitButtonBuilder($name, $options);
-
-            default:
-                return new OrderedFormBuilder($name, $dataClass, new EventDispatcher(), $factory, $options);
-        }
-    }
-
 
     /**
      * Builds and returns the sorter
@@ -101,7 +78,7 @@ class OrderedResolvedFormType extends ResolvedFormType
         /** @var FormInterface $child */
         foreach ($form as $child)
         {
-            $sorter->add($child->getName(), $child->getConfig()->getPosition());
+            $sorter->add($child->getName(), $child->getConfig()->getOption("position"));
         }
 
         return $sorter;
