@@ -2,15 +2,19 @@
 
 namespace Becklyn\OrderedFormBundle\Form\ResolvedType;
 
+use Becklyn\OrderedFormBundle\Form\Builder\OrderedButtonBuilder;
 use Becklyn\OrderedFormBundle\Form\Builder\OrderedFormBuilder;
 use Becklyn\OrderedFormBundle\Sorter\FormFieldSorter;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\Form\ButtonTypeInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\ResolvedFormType;
 use Symfony\Component\Form\ResolvedFormTypeInterface;
+use Symfony\Component\Form\SubmitButtonBuilder;
+use Symfony\Component\Form\SubmitButtonTypeInterface;
 
 
 class OrderedResolvedFormType extends ResolvedFormType
@@ -67,7 +71,19 @@ class OrderedResolvedFormType extends ResolvedFormType
      */
     protected function newBuilder ($name, $dataClass, FormFactoryInterface $factory, array $options)
     {
-        return new OrderedFormBuilder($name, $dataClass, new EventDispatcher(), $factory, $options);
+        $innerType = $this->getInnerType();
+
+        switch (true)
+        {
+            case $innerType instanceof ButtonTypeInterface:
+                return new OrderedButtonBuilder($name, $options);
+
+            case $innerType instanceof SubmitButtonTypeInterface:
+                return new SubmitButtonBuilder($name, $options);
+
+            default:
+                return new OrderedFormBuilder($name, $dataClass, new EventDispatcher(), $factory, $options);
+        }
     }
 
 

@@ -2,10 +2,10 @@
 
 namespace Becklyn\OrderedFormBundle\Form\Builder;
 
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\ButtonBuilder;
 
 
-class OrderedFormBuilder extends FormBuilder
+class OrderedButtonBuilder extends ButtonBuilder
 {
     use OrderedFormBuilderTrait;
 }
