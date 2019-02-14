@@ -27,6 +27,14 @@ class FormPositionExtension extends AbstractTypeExtension
      */
     public function getExtendedType ()
     {
-        return FormType::class;
+        return self::getExtendedTypes()[0];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getExtendedTypes ()
+    {
+        return [ FormType::class ];
     }
 }
