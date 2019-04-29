@@ -21,6 +21,6 @@ class ButtonPositionExtension extends FormPositionExtension
      */
     public static function getExtendedTypes ()
     {
-        return [ FormType::class ];
+        return [ ButtonType::class ];
     }
 }
