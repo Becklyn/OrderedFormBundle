@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Becklyn\OrderedFormBundle\Sorter\Position;
 
 use Becklyn\OrderedFormBundle\Exception\InvalidConfigException;
-
 
 class RelativePosition
 {
@@ -29,9 +28,6 @@ class RelativePosition
 
 
     /**
-     * @param string $name
-     * @param bool   $position
-     * @param string $referenceName
      */
     public function __construct (string $name, bool $position, string $referenceName)
     {
@@ -42,8 +38,6 @@ class RelativePosition
 
 
     /**
-     * @param array $list
-     * @return array
      * @throws InvalidConfigException
      */
     public function moveInList (array &$list) : array
@@ -53,16 +47,16 @@ class RelativePosition
 
         if (false === $referenceIndex)
         {
-            throw new InvalidConfigException(sprintf(
+            throw new InvalidConfigException(\sprintf(
                 "Can't position field '%s' relative to '%s', as the field wasn't found.",
                 $this->name,
                 $this->referenceName
             ));
         }
 
-        if ($this->position === self::AFTER)
+        if (self::AFTER === $this->position)
         {
-            $referenceIndex += 1;
+            ++$referenceIndex;
         }
 
         \array_splice($list, $referenceIndex, 0, [$this->name]);
@@ -72,10 +66,8 @@ class RelativePosition
 
     /**
      * Removes the item from the list
-     *
-     * @param array $list
      */
-    private function removeFromList (array &$list)
+    private function removeFromList (array &$list) : void
     {
         $currentIndex = \array_search($this->name, $list, true);
 

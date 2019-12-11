@@ -1,11 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Becklyn\OrderedFormBundle\Sorter;
 
 use Becklyn\OrderedFormBundle\Exception\InvalidConfigException;
 use Becklyn\OrderedFormBundle\Exception\OrderedFormException;
 use Becklyn\OrderedFormBundle\Sorter\Position\RelativePosition;
-
 
 class FormFieldSorter
 {
@@ -56,8 +55,8 @@ class FormFieldSorter
 
 
     /**
-     * @param string $fieldName
-     * @param mixed  $position
+     * @param mixed $position
+     *
      * @throws OrderedFormException
      */
     public function add (string $fieldName, $position) : void
@@ -80,12 +79,12 @@ class FormFieldSorter
                 break;
 
             // directly push "first" items to the front of the list
-            case $position === "first":
+            case "first" === $position:
                 $this->list[] = $fieldName;
                 break;
 
             // collect "last" items
-            case $position === "last":
+            case "last" === $position:
                 $this->explicitLast[] = $fieldName;
                 break;
 
@@ -102,23 +101,21 @@ class FormFieldSorter
     /**
      * Add a relative positioned element
      *
-     * @param string $fieldName
-     * @param array  $position
      * @throws InvalidConfigException
      */
     private function addRelativePositioned (string $fieldName, array $position) : void
     {
-        if (count($position) !== 1)
+        if (1 !== \count($position))
         {
             throw new InvalidConfigException("a position array must only contain exactly one entry.");
         }
 
-        $referenceName = reset($position);
-        $direction = key($position);
+        $referenceName = \reset($position);
+        $direction = \key($position);
 
         if ($referenceName === $fieldName)
         {
-            throw new InvalidConfigException(sprintf(
+            throw new InvalidConfigException(\sprintf(
                 "A relative positioned form field can't reference itself, in '%s'",
                 $fieldName
             ));
@@ -138,7 +135,7 @@ class FormFieldSorter
                 break;
 
             default:
-                throw new InvalidConfigException(sprintf(
+                throw new InvalidConfigException(\sprintf(
                     "Unknown direction for position array: [position => '%s']",
                     $direction
                 ));
@@ -182,7 +179,8 @@ class FormFieldSorter
      */
     private function appendWeighted () : void
     {
-        ksort($this->weighted);
+        \ksort($this->weighted);
+
         foreach ($this->weighted as $fields)
         {
             foreach ($fields as $field)

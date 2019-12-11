@@ -1,21 +1,13 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Becklyn\OrderedFormBundle\Form\ResolvedType;
 
-use Becklyn\OrderedFormBundle\Form\Builder\OrderedButtonBuilder;
-use Becklyn\OrderedFormBundle\Form\Builder\OrderedFormBuilder;
 use Becklyn\OrderedFormBundle\Sorter\FormFieldSorter;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\Form\ButtonTypeInterface;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\ResolvedFormType;
 use Symfony\Component\Form\ResolvedFormTypeInterface;
-use Symfony\Component\Form\SubmitButtonBuilder;
-use Symfony\Component\Form\SubmitButtonTypeInterface;
-
 
 class OrderedResolvedFormType extends ResolvedFormType
 {
@@ -25,7 +17,7 @@ class OrderedResolvedFormType extends ResolvedFormType
     public function __construct (
         FormTypeInterface $innerType,
         array $typeExtensions = [],
-        ResolvedFormTypeInterface $parent = null
+        ?ResolvedFormTypeInterface $parent = null
     )
     {
         parent::__construct($innerType, $typeExtensions, $parent);
@@ -35,7 +27,7 @@ class OrderedResolvedFormType extends ResolvedFormType
     /**
      * @inheritDoc
      */
-    public function finishView (FormView $view, FormInterface $form, array $options)
+    public function finishView (FormView $view, FormInterface $form, array $options) : void
     {
         parent::finishView($view, $form, $options);
 
@@ -67,9 +59,9 @@ class OrderedResolvedFormType extends ResolvedFormType
     /**
      * Builds and returns the sorter
      *
-     * @param FormInterface $form
-     * @return FormFieldSorter
      * @throws \Becklyn\OrderedFormBundle\Exception\OrderedFormException
+     *
+     * @return FormFieldSorter
      */
     private function buildSorter (FormInterface $form)
     {
