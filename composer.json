@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Becklyn\\OrderedFormBundle\\": ""
+            "Becklyn\\OrderedFormBundle\\": "src/"
         }
     },
     "autoload-dev": {
