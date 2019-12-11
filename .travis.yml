@@ -8,7 +8,7 @@ php:
 
 before_install:
     - COMPOSER_MEMORY_LIMIT=-1 composer require php-coveralls/php-coveralls --no-interaction --prefer-dist --no-progress --no-suggest
-    - COMPOSER_MEMORY_LIMIT=-1 composer self-update --stable --no-interaction --prefer-dist --no-progress --no-suggest
+    - COMPOSER_MEMORY_LIMIT=-1 composer self-update --stable --no-interaction --no-progress
     - COMPOSER_MEMORY_LIMIT=-1 composer global require localheinz/composer-normalize bamarni/composer-bin-plugin --no-interaction --prefer-dist --no-progress --no-suggest
 
 install:
