@@ -1,19 +1,18 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Becklyn\OrderedFormBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
 
 class FormPositionExtension extends AbstractTypeExtension
 {
     /**
      * @inheritDoc
      */
-    public function configureOptions (OptionsResolver $resolver)
+    public function configureOptions (OptionsResolver $resolver) : void
     {
         $resolver
             ->setDefined("position")
@@ -25,16 +24,11 @@ class FormPositionExtension extends AbstractTypeExtension
     /**
      * @inheritDoc
      */
-    public function getExtendedType ()
+    public static function getExtendedTypes () : iterable
     {
-        return self::getExtendedTypes()[0];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public static function getExtendedTypes ()
-    {
-        return [ FormType::class ];
+        return [
+            FormType::class,
+            ButtonType::class,
+        ];
     }
 }

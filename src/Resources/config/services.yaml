@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Becklyn\OrderedFormBundle\:
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Exception,Resources,BecklynOrderedFormBundle.php}'

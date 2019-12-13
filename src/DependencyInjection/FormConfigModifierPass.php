@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Becklyn\OrderedFormBundle\DependencyInjection;
 
@@ -8,17 +8,16 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\Form\Extension\DataCollector\Proxy\ResolvedTypeFactoryDataCollectorProxy;
 
-
 class FormConfigModifierPass implements CompilerPassInterface
 {
     /**
      * @inheritDoc
      */
-    public function process (ContainerBuilder $container)
+    public function process (ContainerBuilder $container) : void
     {
         $service = $container->getDefinition("form.resolved_type_factory");
 
-        if ($service->getClass() === ResolvedTypeFactoryDataCollectorProxy::class)
+        if (ResolvedTypeFactoryDataCollectorProxy::class === $service->getClass())
         {
             // keep the data collector proxy, so that the profiler still works
             $service
