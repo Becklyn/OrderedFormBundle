@@ -18,6 +18,9 @@ Usage
 This bundle adds a new form option called `position`:
 
 ```php
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+
 class SomeForm extends AbstractType
 {
     /**
