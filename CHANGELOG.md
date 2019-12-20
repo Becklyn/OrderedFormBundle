@@ -1,3 +1,12 @@
+1.2.0
+=====
+
+*   (feature) Support Symfony 5.
+*   (internal) Move all files to common directory.
+*   (internal) Update package infrastructure.
+*   (docs) Add README.
+
+
 1.1.1
 =====
 
