@@ -1,3 +1,9 @@
+1.2.1
+=====
+
+*   (improvement) Add initial support for PHP 8.
+
+
 1.2.0
 =====
 
