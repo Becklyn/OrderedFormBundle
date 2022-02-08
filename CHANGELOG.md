@@ -1,3 +1,15 @@
+1.2.2
+=====
+
+*   (improvement) Remove Symfony 5.4 deprecation warnings
+
+
+1.2.1
+=====
+
+*   (improvement) Add initial support for PHP 8.
+
+
 1.2.0
 =====
 
