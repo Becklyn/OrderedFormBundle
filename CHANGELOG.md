@@ -1,3 +1,9 @@
+1.2.2
+=====
+
+*   (improvement) Remove Symfony 5.4 deprecation warnings
+
+
 1.2.1
 =====
 

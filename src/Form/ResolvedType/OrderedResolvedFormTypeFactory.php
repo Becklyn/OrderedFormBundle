@@ -15,7 +15,7 @@ class OrderedResolvedFormTypeFactory implements ResolvedFormTypeFactoryInterface
         FormTypeInterface $type,
         array $typeExtensions,
         ?ResolvedFormTypeInterface $parent = null
-    )
+    ): ResolvedFormTypeInterface
     {
         return new OrderedResolvedFormType($type, $typeExtensions, $parent);
     }
