@@ -15,7 +15,7 @@
         "symfony/config": "^v5.4.3 || ^v6.0.3",
         "symfony/dependency-injection": "^v5.4.3 || ^v6.0.3",
         "symfony/form": "^v5.4.3 || ^v6.0.3",
-        "symfony/http-kernel": "^v5.4.3 || ^v6.0.3"
+        "symfony/http-kernel": "^v5.4.4 || ^v6.0.4"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
