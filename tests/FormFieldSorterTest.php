@@ -3,13 +3,14 @@
 namespace Tests\Becklyn\OrderedFormBundle;
 
 use Becklyn\OrderedFormBundle\Exception\InvalidConfigException;
+use Becklyn\OrderedFormBundle\Exception\OrderedFormException;
 use Becklyn\OrderedFormBundle\Sorter\FormFieldSorter;
 use PHPUnit\Framework\TestCase;
 
 
 class FormFieldSorterTest extends TestCase
 {
-    public function dataProviderOrder ()
+    public function dataProviderOrder () : array
     {
         return [
             // keep order
@@ -78,7 +79,7 @@ class FormFieldSorterTest extends TestCase
      * @param array $expectedOrder
      * @throws \Becklyn\OrderedFormBundle\Exception\OrderedFormException
      */
-    public function testOrder (array $definitions, array $expectedOrder)
+    public function testOrder (array $definitions, array $expectedOrder) : void
     {
         $sorter = new FormFieldSorter();
 
@@ -95,7 +96,7 @@ class FormFieldSorterTest extends TestCase
 
 
 
-    public function dataProviderInvalidConfig ()
+    public function dataProviderInvalidConfig () : array
     {
         return [
             // invalid value
@@ -160,10 +161,10 @@ class FormFieldSorterTest extends TestCase
      * @param string $messageRegExp
      * @throws \Becklyn\OrderedFormBundle\Exception\OrderedFormException
      */
-    public function testInvalidConfig (array $definitions, string $exception, string $messageRegExp)
+    public function testInvalidConfig (array $definitions, string $exception, string $messageRegExp) : void
     {
         $this->expectException($exception);
-        $this->expectExceptionMessageRegExp($messageRegExp);
+        $this->expectExceptionMessageMatches($messageRegExp);
 
         $sorter = new FormFieldSorter();
 
@@ -177,12 +178,13 @@ class FormFieldSorterTest extends TestCase
 
 
     /**
-     * @expectedException \Becklyn\OrderedFormBundle\Exception\OrderedFormException
-     * @expectedExceptionMessage Can't add item after the form field sorter is frozen.
      * @throws \Becklyn\OrderedFormBundle\Exception\OrderedFormException
      */
-    public function testAddAfterGet ()
+    public function testAddAfterGet () : void
     {
+        $this->expectException(OrderedFormException::class);
+        $this->expectExceptionMessage("Can't add item after the form field sorter is frozen.");
+
         $sorter = new FormFieldSorter();
         $sorter->add("a", null);
         $sorter->getSortedFieldNames();
@@ -195,7 +197,7 @@ class FormFieldSorterTest extends TestCase
      *
      * @throws \Becklyn\OrderedFormBundle\Exception\OrderedFormException
      */
-    public function testMultipleGet ()
+    public function testMultipleGet () : void
     {
         $sorter = new FormFieldSorter();
         $sorter->add("a", null);
