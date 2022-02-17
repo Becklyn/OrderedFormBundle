@@ -1,25 +1,25 @@
 {
     "name": "becklyn/ordered-form-bundle",
-    "type": "symfony-bundle",
     "description": "This bundle adds functionality for ordering form elements",
-    "homepage": "https://github.com/Becklyn/OrderedFormBundle",
     "license": "BSD-3-Clause",
+    "type": "symfony-bundle",
     "authors": [
         {
             "name": "Becklyn Studios",
             "homepage": "http://becklyn.com/"
         }
     ],
+    "homepage": "https://github.com/Becklyn/OrderedFormBundle",
     "require": {
-        "php": "^7.1|^8.0",
-        "symfony/config": "^4.4 || ^5.0",
-        "symfony/dependency-injection": "^4.4 || ^5.0",
-        "symfony/form": "^4.4 || ^5.0",
-        "symfony/http-kernel": "^4.4 || ^5.0"
+        "php": ">=7.4",
+        "symfony/config": "^v5.4.3 || ^v6.0.3",
+        "symfony/dependency-injection": "^v5.4.3 || ^v6.0.3",
+        "symfony/form": "^v5.4.3 || ^v6.0.3",
+        "symfony/http-kernel": "^v5.4.3 || ^v6.0.3"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
-        "symfony/phpunit-bridge": "^5.0"
+        "symfony/phpunit-bridge": "^v5.4.3 || ^v6.0.3"
     },
     "autoload": {
         "psr-4": {

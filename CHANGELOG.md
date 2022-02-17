@@ -1,3 +1,13 @@
+1.3.0
+=====
+
+*   (feature) Add support for PHP 8.
+*   (internal) Fix Symfony deprecations.
+*   (internal) Replace CircleCI with GitHub Actions.
+*   (improvement) Add missing property types and return types.
+*   (improvement) Add support for Symfony 6.
+
+
 1.2.2
 =====
 

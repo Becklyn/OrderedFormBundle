@@ -5,6 +5,7 @@ namespace Becklyn\OrderedFormBundle;
 use Becklyn\OrderedFormBundle\DependencyInjection\BecklynOrderedFormExtension;
 use Becklyn\OrderedFormBundle\DependencyInjection\FormConfigModifierPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class BecklynOrderedFormBundle extends Bundle
@@ -21,7 +22,7 @@ class BecklynOrderedFormBundle extends Bundle
     /**
      * @inheritDoc
      */
-    public function getContainerExtension ()
+    public function getContainerExtension () : ?ExtensionInterface
     {
         return new BecklynOrderedFormExtension();
     }
