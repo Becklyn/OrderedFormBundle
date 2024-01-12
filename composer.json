@@ -12,14 +12,14 @@
     "homepage": "https://github.com/Becklyn/OrderedFormBundle",
     "require": {
         "php": ">=7.4",
-        "symfony/config": "^v5.4.3 || ^v6.0.3",
-        "symfony/dependency-injection": "^v5.4.3 || ^v6.0.3",
-        "symfony/form": "^v5.4.3 || ^v6.0.3",
-        "symfony/http-kernel": "^v5.4.4 || ^v6.0.4"
+        "symfony/config": "^v5.4.3 || ^v6.0.3 || ^7.0",
+        "symfony/dependency-injection": "^v5.4.3 || ^v6.0.3 || ^7.0",
+        "symfony/form": "^v5.4.3 || ^v6.0.3 || ^7.0",
+        "symfony/http-kernel": "^v5.4.4 || ^v6.0.4 || ^7.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
-        "symfony/phpunit-bridge": "^v5.4.3 || ^v6.0.3"
+        "symfony/phpunit-bridge": "^v5.4.3 || ^v6.0.3 || ^7.0"
     },
     "autoload": {
         "psr-4": {
