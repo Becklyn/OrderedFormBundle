@@ -6,3 +6,5 @@
 /vendor
 /vendor-bin/*/composer.lock
 /vendor-bin/*/vendor
+/reports
+.idea/
