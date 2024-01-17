@@ -1,3 +1,12 @@
+1.4.0
+=====
+
+*   (feature) Support Symfony 7.
+*   (improvement) Add reports on coverage when executing tests.
+*   (improvement) Add a new unit test.
+*   (internal) Move the existing test class to match bundle's tree.
+
+
 1.3.0
 =====
 
