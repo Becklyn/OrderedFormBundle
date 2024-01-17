@@ -27,6 +27,10 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <report>
+            <clover outputFile="reports/phpunit.coverage.xml"/>
+            <html outputDirectory="reports/cov/"/>
+        </report>
     </coverage>
 
     <listeners>

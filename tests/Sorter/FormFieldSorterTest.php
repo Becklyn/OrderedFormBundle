@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Becklyn\OrderedFormBundle;
+namespace Tests\Becklyn\OrderedFormBundle\Sorter;
 
 use Becklyn\OrderedFormBundle\Exception\InvalidConfigException;
 use Becklyn\OrderedFormBundle\Exception\OrderedFormException;
